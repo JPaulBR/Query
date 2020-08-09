@@ -1,0 +1,53 @@
+<div class="w3-main" style="margin-left:340px;margin-right:40px">
+    <div class="w3-container" id="services" style="margin-top:75px">
+        <h1 class="w3-xxxlarge w3-text-red"><b>Productos</b></h1>
+        <hr style="width:50px;border:5px solid red" class="w3-round">
+        <p>Módulo de productos.</p>
+        <div class="containerSearch">
+          <div class="input-group">
+            <input [(ngModel)]="dataWrite" type="text" class="form-control" placeholder="Ingrese el dato" (ngModelChange)="modelChange($event)">
+            <div class="input-group-append">
+              <button class="btn btn-secondary" type="button">
+              <i>Buscar</i>
+            </button>
+          </div>
+        </div>
+        <br>
+        <div style="margin: 0 auto; display: block;">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Columna0</th>
+                    <th scope="col">Columna1</th>
+                    <th scope="col">Columna2</th>
+                    <th scope="col">Columna3</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let data of listData; let j = index">
+                  <tr (click)="openPopup(j,content)" style="cursor: pointer;">
+                    <th scope="row">{{j+1}}</th>
+                    <td>{{data.dato0}}</td>
+                    <td>{{data.dato1}}</td>
+                    <td>{{data.dato2}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Información</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h5><strong>dato1 :</strong> {{listData[indexData].dato1}}</h5>
+    <h5><strong>dato2 :</strong> {{listData[indexData].dato2}}</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
+  </div>
+</ng-template>
