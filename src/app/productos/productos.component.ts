@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProductosComponent implements OnInit {
 
+  
   listData = [
     {dato0:"dato0",dato1:"dato1",dato2:"dato2"},
     {dato0:"dato3",dato1:"dato4",dato2:"dato5"},

@@ -2,12 +2,12 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-ventas',
-  templateUrl: './ventas.component.html',
-  styleUrls: ['./ventas.component.scss'],
+  selector: 'app-proveedores',
+  templateUrl: './proveedores.component.html',
+  styleUrls: ['./proveedores.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class VentasComponent implements OnInit {
+export class ProveedoresComponent implements OnInit {
 
   listData = [
     {dato0:"dato0",dato1:"dato1",dato2:"dato2"},
@@ -16,7 +16,6 @@ export class VentasComponent implements OnInit {
   ];
   dataWrite:string;
   indexData:number;
-
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {

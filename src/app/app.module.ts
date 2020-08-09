@@ -8,13 +8,21 @@ import { ProductosComponent } from './productos/productos.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { VentasComponent } from './ventas/ventas.component';
+import { VendedoresComponent } from './vendedores/vendedores.component';
+import { ClientesComponent } from './clientes/clientes.component';
+import { ProveedoresComponent } from './proveedores/proveedores.component';
+import { InicioComponent } from './inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     ProductosComponent,
-    VentasComponent
+    VentasComponent,
+    VendedoresComponent,
+    ClientesComponent,
+    ProveedoresComponent,
+    InicioComponent
   ],
   imports: [
     BrowserModule,
