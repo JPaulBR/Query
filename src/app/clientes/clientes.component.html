@@ -17,15 +17,21 @@
             <table class="table">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">Columna0</th>
-                    <th scope="col">Columna1</th>
-                    <th scope="col">Columna2</th>
-                    <th scope="col">Columna3</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Región</th>
+                    <th scope="col">País</th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let data of listData; let j = index">
                   <tr (click)="openPopup(j,content)" style="cursor: pointer;">
                     <th scope="row">{{j+1}}</th>
+                    <td>{{data.dato0}}</td>
+                    <td>{{data.dato1}}</td>
+                    <td>{{data.dato2}}</td>
                     <td>{{data.dato0}}</td>
                     <td>{{data.dato1}}</td>
                     <td>{{data.dato2}}</td>
@@ -44,8 +50,30 @@
     </button>
   </div>
   <div class="modal-body">
-    <h5><strong>dato1 :</strong> {{listData[indexData].dato1}}</h5>
-    <h5><strong>dato2 :</strong> {{listData[indexData].dato2}}</h5>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Región</th>
+          <th scope="col">País</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let data of listData; let j = index">
+        <tr (click)="openPopup(j,content)" style="cursor: pointer;">
+          <th scope="row">{{j+1}}</th>
+          <td>{{data.dato0}}</td>
+          <td>{{data.dato1}}</td>
+          <td>{{data.dato2}}</td>
+          <td>{{data.dato0}}</td>
+          <td>{{data.dato1}}</td>
+          <td>{{data.dato2}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>

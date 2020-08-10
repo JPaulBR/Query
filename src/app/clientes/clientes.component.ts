@@ -22,7 +22,7 @@ export class ClientesComponent implements OnInit {
   }
 
   openPopup(index:number,content){
-    this.modalService.open(content, { centered: true });
+    this.modalService.open(content, { centered: true,size: 'lg' });
     this.indexData = index;
   }
 
