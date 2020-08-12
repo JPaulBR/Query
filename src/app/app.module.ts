@@ -12,6 +12,7 @@ import { VendedoresComponent } from './vendedores/vendedores.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { InicioComponent } from './inicio/inicio.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

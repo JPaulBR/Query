@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-productos',
@@ -10,16 +12,17 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ProductosComponent implements OnInit {
 
   
-  listData = [
-    {dato0:"dato0",dato1:"dato1",dato2:"dato2"},
-    {dato0:"dato3",dato1:"dato4",dato2:"dato5"},
-    {dato0:"dato6",dato1:"dato7",dato2:"dato8"}
-  ];
+  listData: any;
   dataWrite:string;
   indexData:number;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private http:HttpClient) { }
 
   ngOnInit(): void {
+    
+    var url = "localhost:3000/getProductos";
+    this.http.get<any>(url).subscribe(res=>{
+      console.log(res);
+    })
   }
 
   openPopup(index:number,content){
