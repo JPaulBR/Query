@@ -13,26 +13,45 @@ export class ProductosComponent implements OnInit {
 
   
   listData: any;
+  espeficData: any;
+  listTransact: any;
   dataWrite:string;
   indexData:number;
   constructor(private modalService: NgbModal, private http:HttpClient) { }
 
   ngOnInit(): void {
-    
-    var url = "localhost:3000/getProductos";
-    this.http.get<any>(url).subscribe(res=>{
-      console.log(res);
-    })
+    this.getProducts();
+  }
+
+  getProducts(){
+    var url = "http://localhost:3000/getProductos";
+    this.http.get(url).subscribe(res=>{
+      this.listData=res["recordset"];
+    });
   }
 
   openPopup(index:number,content){
+    var url = "http://localhost:3000/conseguirInfoProductoEspecifico/"+index;
+    this.http.get(url).subscribe(res=>{
+      this.espeficData=res["recordset"][0];
+    });
+    var url2 = "http://localhost:3000/conseguirTransacciones/"+index;
+    this.http.get(url2).subscribe(res=>{
+      this.listTransact=res["recordset"];
+    });
     this.modalService.open(content, { centered: true,size: 'lg'  });
-    this.indexData = index;
   }
 
   modelChange(event){
-    console.log(this.dataWrite);
-    //realizar la búsqueda directo desde la base de datos
+    if (this.dataWrite==="" || this.dataWrite===undefined){
+      this.getProducts();
+    }
+    else{
+      var url = "http://localhost:3000/conseguirProductos/"+this.dataWrite;
+      this.http.get(url).subscribe(res=>{
+        this.listData=res["recordset"];
+      });
+    }
   }
 
 }

@@ -18,27 +18,13 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Categoría</th>
-                    <th scope="col">Subcategoría</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Se vende desde</th>
-                    <th scope="col">Se sigue vendiendo</th>
+                    <th scope="col">Nombre del producto</th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let data of listData; let j = index">
-                  <tr (click)="openPopup(j,content)" style="cursor: pointer;">
-                    <th scope="row">{{j+1}}</th>
-                    <td>{{data.dato0}}</td>
-                    <td>{{data.dato1}}</td>
-                    <td>{{data.dato2}}</td>
-                    <td>{{data.dato0}}</td>
-                    <td>{{data.dato1}}</td>
-                    <td>{{data.dato2}}</td>
-                    <td>{{data.dato2}}</td>
-                    <td>{{data.dato2}}</td>
+                <tbody *ngFor="let data of listData">
+                  <tr (click)="openPopup(data.ProductID,content)" style="cursor: pointer;">
+                    <th scope="row">{{data.ProductID}}</th>
+                    <td>{{data.Name}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -48,37 +34,53 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Información</h4>
+    <h4 class="modal-title">Información del producto</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <strong>Id: </strong> {{espeficData.ProductID}}
+        </div>
+        <div class="col">
+          <strong>Producto: </strong> {{espeficData.Name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <strong>Categoría: </strong> {{espeficData.Categoria}}
+        </div>
+        <div class="col">
+          <strong>Descripción: </strong> {{espeficData.Description}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <strong>Precio: </strong> {{espeficData.ListPrice}}
+        </div>
+        <div class="col">
+          <strong>Cantidad: </strong> {{espeficData.Quantity}}
+        </div>
+      </div>
+    </div>
+    <br>
+    <h5><strong>Transacciones del producto</strong></h5>
     <table class="table">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Categoría</th>
-          <th scope="col">Subcategoría</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Descripción</th>
+          <th scope="col">Día de la transacción</th>
           <th scope="col">Cantidad</th>
-          <th scope="col">Se vende desde</th>
-          <th scope="col">Se sigue vendiendo</th>
         </tr>
       </thead>
-      <tbody *ngFor="let data of listData; let j = index">
-        <tr (click)="openPopup(j,content)" style="cursor: pointer;">
-          <th scope="row">{{j+1}}</th>
-          <td>{{data.dato0}}</td>
-          <td>{{data.dato1}}</td>
-          <td>{{data.dato2}}</td>
-          <td>{{data.dato0}}</td>
-          <td>{{data.dato1}}</td>
-          <td>{{data.dato2}}</td>
-          <td>{{data.dato2}}</td>
-          <td>{{data.dato2}}</td>
+      <tbody *ngFor="let data of listTransact">
+        <tr>
+          <th scope="row">{{data.TransactionID}}</th>
+          <td>{{data.TransactionDate}}</td>
+          <td>{{data.Quantity}}</td>
         </tr>
       </tbody>
     </table>

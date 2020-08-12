@@ -17,18 +17,14 @@
             <table class="table">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">Columna0</th>
-                    <th scope="col">Columna1</th>
-                    <th scope="col">Columna2</th>
-                    <th scope="col">Columna3</th>
+                    <th scope="col">BusinessEntityID</th>
+                    <th scope="col">Nombre</th>
                   </tr>
                 </thead>
-                <tbody *ngFor="let data of listData; let j = index">
-                  <tr (click)="openPopup(j,content)" style="cursor: pointer;">
-                    <th scope="row">{{j+1}}</th>
-                    <td>{{data.dato0}}</td>
-                    <td>{{data.dato1}}</td>
-                    <td>{{data.dato2}}</td>
+                <tbody *ngFor="let data of listData">
+                  <tr (click)="openPopup(data.BusinessEntityID,content)" style="cursor: pointer;">
+                    <th scope="row">{{data.BusinessEntityID}}</th>
+                    <td>{{data.Name}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -38,14 +34,48 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Información</h4>
+    <h4 class="modal-title">Pedidos por proveedor</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <h5><strong>dato1 :</strong> {{listData[indexData].dato1}}</h5>
-    <h5><strong>dato2 :</strong> {{listData[indexData].dato2}}</h5>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Encargado</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let data of espeficData">
+        <tr>
+          <th scope="row">{{data.PurchaseOrderID}}</th>
+          <td>{{data.Encargado}}</td>
+          <td>{{data.Total}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <h5><strong>Productos por proveedor</strong></h5>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let data of listTransact">
+        <tr>
+          <th scope="row">{{data.PurchaseOrderID}}</th>
+          <td>{{data.Producto}}</td>
+          <td>{{data.OrderQty}}</td>
+          <td>{{data.PrecioTotal}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Cerrar</button>
